@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+<h1>Projet SIN PAI</h1>
+<div>
+	Ciclk to turn <button onclick="led(1)">LED ON</button><br> 
+	Ciclk to turn <button onclick="led(0)">LED OFF</button><br> 
+</div>
+<hr>
+<div>
+	<p id="ledstatus"> ...</p>
+</div>	
+
+<script>
+ 
+ function led(onoff) {
+    nocache = "&nocache=" + Math.random() * 1000000;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {  
+            document.getElementById("ledstatus").innerHTML = xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", "led="+onoff + nocache, true);
+    xmlhttp.send();
+}
+</script>
+	
+</body>
+</html>
